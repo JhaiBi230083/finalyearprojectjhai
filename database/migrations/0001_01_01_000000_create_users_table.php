@@ -12,18 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role', ['student', 'staff', 'vendor', 'admin'])->default('student');
-            $table->string('phone_number')->nullable();
-            $table->string('faculty')->nullable();
-            $table->string('matric_number')->unique()->nullable();
-            $table->foreignId('canteen_id')->nullable()->constrained('canteens')->onDelete('set null');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->string('password');
+        $table->enum('role', ['student', 'staff', 'vendor', 'admin'])->default('student');
+        $table->string('phone_number')->nullable();
+        $table->string('faculty')->nullable();
+        $table->string('matric_number')->unique()->nullable();
+        $table->unsignedBigInteger('canteen_id')->nullable(); // Just the column, no constraint yet
+        $table->rememberToken();
+        $table->timestamps();
+    });
 
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
