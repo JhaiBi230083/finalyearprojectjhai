@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('canteens', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('location');
-            $table->time('opening_time');
-            $table->time('closing_time');
-            $table->boolean('is_active')->default(true);
-            $table->foreignId('vendor_id')->constrained('users');
-            $table->timestamps();
-        });
+        $table->id();
+        $table->string('name');
+        $table->text('description')->nullable();
+        $table->string('location');
+        $table->time('opening_time');
+        $table->time('closing_time');
+        $table->boolean('is_active')->default(true);
+        $table->unsignedBigInteger('vendor_id'); // Just the column, no constraint yet
+        $table->timestamps();
+    });
     }
 
     /**
